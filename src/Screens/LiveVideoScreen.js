@@ -2,11 +2,11 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {colors, images} from '../utils';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
-export default function LivePhotoScreen({navigation}) {
+export default function LiveVideoScreen() {
   const [image, setImage] = useState(null);
   const takePhoto = async () => {
     const result = await launchCamera({mediaType: 'photo', quality: 1});
@@ -27,7 +27,7 @@ export default function LivePhotoScreen({navigation}) {
   return (
     <View style={styles.main}>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>Live Photo</Text>
+        <Text style={styles.title}>Live Video</Text>
         {!!image && (
           <TouchableOpacity activeOpacity={0.5} onPress={takePhoto}>
             <Text style={styles.subtitle}>Retake photo</Text>
@@ -44,7 +44,10 @@ export default function LivePhotoScreen({navigation}) {
       ) : (
         <View style={styles.box}>
           <View style={styles.iconRounded}>
-            <Icon color={colors.white} name="user" size={140} />
+            <Ionicons name="mic-outline" size={32} color={colors.white} />
+            <Text style={styles.midtitle}>
+              Please read out the date and time on your device.
+            </Text>
           </View>
         </View>
       )}
@@ -59,15 +62,17 @@ export default function LivePhotoScreen({navigation}) {
         <TouchableOpacity
           style={styles.button}
           activeOpacity={0.5}
-          onPress={
-            image ? () => navigation.navigate('LiveVideoScreen') : takePhoto
-          }>
+          onPress={takePhoto}>
           {!!image ? (
             <Text style={styles.buttonTitle}>Continue</Text>
           ) : (
             <>
-              <EvilIcons name="image" size={25} color={colors.white} />
-              <Text style={styles.buttonTitle}>Take Photo</Text>
+              <Ionicons
+                name="videocam-outline"
+                size={25}
+                color={colors.white}
+              />
+              <Text style={styles.buttonTitle}>Start Video</Text>
             </>
           )}
         </TouchableOpacity>
@@ -110,13 +115,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flex: 1,
   },
+  midtitle: {
+    fontSize: 16,
+    color: colors.white,
+    marginLeft: 8,
+  },
   iconRounded: {
-    backgroundColor: '#cecece',
-    height: 180,
-    width: 180,
-    borderRadius: 90,
+    backgroundColor: 'rgba(2, 3, 3, 0.6)',
+    padding: 10,
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'row',
+    paddingHorizontal: 65,
   },
   commentSection: {
     marginTop: 19,
