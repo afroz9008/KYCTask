@@ -7,6 +7,7 @@ export const colors = {
   green: '#006644',
   lightGrey: '#EFEFEF',
   lightGreen: '#36B37E',
+  red:"#F12D2E"
 };
 
 export const images = {

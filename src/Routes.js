@@ -29,13 +29,9 @@ const Routes = () => {
             },
             headerRight: () => {
               return (
-                <View style={{flexDirection:"row",alignItems:"center"}}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
                   <Text style={styles.rightHeader}>SECURE</Text>
-                  <Icon
-                    name="lock"
-                    size={10}
-                    color={colors.grey}
-                  />
+                  <Icon name="lock" size={10} color={colors.grey} />
                 </View>
               );
             },
@@ -51,7 +47,7 @@ const styles = StyleSheet.create({
     color: colors.grey,
     fontSize: 10,
     letterSpacing: 1,
-    marginRight:5
+    marginRight: 5,
   },
 });
 
